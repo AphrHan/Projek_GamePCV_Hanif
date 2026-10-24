@@ -5,8 +5,6 @@ import time
 import cv2
 import numpy as np
 
-# ===================== KONFIGURASI =====================
-CAM_INDEX, W, H = 0, 640, 480
 BORDER, HEAD_R, BODY_R, ITEM_R = 25, 11, 9, 14
 SEG_DIST, SPEED = 14, 16
 START_LEN, MIN_LEN = 5, 2
@@ -19,7 +17,6 @@ FONT = cv2.FONT_HERSHEY_SIMPLEX
 HUE_TOL = 10
 TH = {"h": 0, "s": 100, "v": 70}
 
-# Shortcut keyboard untuk tuning threshold
 ADJUST = {
     ord("+"): ("s", 5), ord("="): ("s", 5),
     ord("-"): ("s", -5), ord("_"): ("s", -5),
@@ -29,7 +26,6 @@ ADJUST = {
 SPRITES = {}
 clicks = []
 
-# ===================== PENGOLAHAN CITRA =====================
 def to_hsv(frame):
     return cv2.cvtColor(cv2.GaussianBlur(frame, (9, 9), 0), cv2.COLOR_BGR2HSV)
 
@@ -41,7 +37,6 @@ def detect(frame):
     def rng(a, b):
         return cv2.inRange(hsv, (a, s, v), (b, 255, 255))
 
-    # Merah: hue melingkar (wrap-around)
     if lo < 0:
         mask = rng(0, hi) | rng(180 + lo, 179)
     elif hi > 179:
@@ -66,7 +61,6 @@ def calibrate(frame, pt):
     TH["s"] = max(60, int(np.median(patch[:, 1])) - 80)
     TH["v"] = max(40, int(np.median(patch[:, 2])) - 80)
 
-# ===================== MAIN (tahap 1) =====================
 def on_mouse(event, x, y, flags, param):
     if event == cv2.EVENT_LBUTTONDOWN:
         clicks.append((x, y))
