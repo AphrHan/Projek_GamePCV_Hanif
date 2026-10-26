@@ -25,3 +25,4 @@ Setiap frame kamera diproses dengan Gaussian blur untuk mengurangi noise, lalu d
 
 <img width="999" height="413" alt="image" src="https://github.com/user-attachments/assets/e4ffb8f3-f776-4272-a325-0fdbf0fd3259" />
 
+<img width="1002" height="434" alt="image" src="https://github.com/user-attachments/assets/3a3b8aeb-ebca-4e21-9575-d354fb743505" />
